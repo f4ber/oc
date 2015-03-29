@@ -12,8 +12,8 @@ class ControllerInformationContact extends Controller {
 
 			$mail = new Mail($this->config->get('config_mail'));
 			$mail->setTo($this->config->get('config_email'));
-			$mail->setFrom($this->request->post['email']);
-			$mail->setSender($this->request->post['name']);
+			$mail->setFrom($this->config->get('config_email'));
+			$mail->setSender($this->request->post['email']);
 			$mail->setSubject(sprintf($this->language->get('email_subject'), $this->request->post['name']));
 			$mail->setText(strip_tags($this->request->post['enquiry']));
 			$mail->send();

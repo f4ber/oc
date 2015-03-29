@@ -301,11 +301,11 @@ class Cart {
 
 		$key = base64_encode(serialize($product));
 
-		if ((int)$qty && ((int)$qty > 0)) {
+		if ((float)$qty && ((float)$qty > 0)) {
 			if (!isset($this->session->data['cart'][$key])) {
-				$this->session->data['cart'][$key] = (int)$qty;
+				$this->session->data['cart'][$key] = (float)$qty;
 			} else {
-				$this->session->data['cart'][$key] += (int)$qty;
+				$this->session->data['cart'][$key] += (float)$qty;
 			}
 		}
 	}
@@ -313,8 +313,8 @@ class Cart {
 	public function update($key, $qty) {
 		$this->data = array();
 
-		if ((int)$qty && ((int)$qty > 0) && isset($this->session->data['cart'][$key])) {
-			$this->session->data['cart'][$key] = (int)$qty;
+		if ((float)$qty && ((float)$qty > 0) && isset($this->session->data['cart'][$key])) {
+			$this->session->data['cart'][$key] = (float)$qty;
 		} else {
 			$this->remove($key);
 		}

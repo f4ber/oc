@@ -62,7 +62,7 @@
 	<add position="before"><![CDATA[ 
 	<div class="quantity_div">
 	<span class="minus">&lt;</span>
-	<input type="text" name="quantity" class="quantity_input" size="2" value="<?php echo $product['minimum']; ?>"  data-maximum="<?php echo $product['quantity']; ?>" />	  
+	<input type="text" name="quantity" class="quantity_input" size="2" value="<?php if ($product['minimum']<1) { echo number_format($product['minimum'], 1, '.', ''); } else { echo number_format($product['minimum'], 0, '.', ''); } ?>" delta="<?php if ($product['minimum']<1) { echo "0.1"; } else { echo "1"; } ?>" data-maximum="<?php if ($product['minimum']<1) { echo number_format($product['quantity'], 1, '.', ''); } else { echo number_format($product['quantity'], 0, '.', ''); } ?>" />	  
 	<span class="plus">&gt;</span>
 	</div>
 	]]></add>
@@ -78,7 +78,7 @@
 	<add position="before"><![CDATA[ 
 	<div class="quantity_div">
 	<span class="minus">&lt;</span>
-	<input type="text" name="quantity" class="quantity_input" size="2" value="<?php echo $product['minimum']; ?>" data-maximum="<?php echo $product['quantity']; ?>" />	  
+	<input type="text" name="quantity" class="quantity_input" size="2" value="<?php if ($product['minimum']<1) { echo number_format($product['minimum'], 1, '.', ''); } else { echo number_format($product['minimum'], 0, '.', ''); } ?>" delta="<?php if ($product['minimum']<1) { echo "0.1"; } else { echo "1"; } ?>" data-maximum="<?php if ($product['minimum']<1) { echo number_format($product['quantity'], 1, '.', ''); } else { echo number_format($product['quantity'], 0, '.', ''); } ?>" />	  
 	<span class="plus">&gt;</span>
 	</div>
 	]]></add>
@@ -94,7 +94,7 @@
 	<add position="before"><![CDATA[ 
 	<div class="quantity_div">
 	<span class="minus">&lt;</span>
-	<input type="text" name="quantity" class="quantity_input" size="2" value="<?php echo $product['minimum']; ?>" data-maximum="<?php echo $product['quantity']; ?>" />	  
+	<input type="text" name="quantity" class="quantity_input" size="2" value="<?php if ($product['minimum']<1) { echo number_format($product['minimum'], 1, '.', ''); } else { echo number_format($product['minimum'], 0, '.', ''); } ?>" delta="<?php if ($product['minimum']<1) { echo "0.1"; } else { echo "1"; } ?>" data-maximum="<?php if ($product['minimum']<1) { echo number_format($product['quantity'], 1, '.', ''); } else { echo number_format($product['quantity'], 0, '.', ''); } ?>" />	  
 	<span class="plus">&gt;</span>
 	</div>
 	]]></add>
@@ -110,7 +110,7 @@
 	<add position="before"><![CDATA[ 
 	<div class="quantity_div">
 	<span class="minus">&lt;</span>
-	<input type="text" name="quantity" class="quantity_input" size="2" value="<?php echo $product['minimum']; ?>" data-maximum="<?php echo $product['quantity']; ?>" />	  
+	<input type="text" name="quantity" class="quantity_input" size="2" value="<?php if ($product['minimum']<1) { echo number_format($product['minimum'], 1, '.', ''); } else { echo number_format($product['minimum'], 0, '.', ''); } ?>" delta="<?php if ($product['minimum']<1) { echo "0.1"; } else { echo "1"; } ?>" data-maximum="<?php if ($product['minimum']<1) { echo number_format($product['quantity'], 1, '.', ''); } else { echo number_format($product['quantity'], 0, '.', ''); } ?>" />	  
 	<span class="plus">&gt;</span>
 	</div>
 	]]></add>
@@ -126,7 +126,7 @@
 	<add position="before"><![CDATA[ 
 	<div class="quantity_div">
 	<span class="minus">&lt;</span>
-	<input type="text" name="quantity" class="quantity_input" size="2" value="<?php echo $product['minimum']; ?>" data-maximum="<?php echo $product['quantity']; ?>" />	  
+	<input type="text" name="quantity" class="quantity_input" size="2" value="<?php if ($product['minimum']<1) { echo number_format($product['minimum'], 1, '.', ''); } else { echo number_format($product['minimum'], 0, '.', ''); } ?>" delta="<?php if ($product['minimum']<1) { echo "0.1"; } else { echo "1"; } ?>" data-maximum="<?php if ($product['minimum']<1) { echo number_format($product['quantity'], 1, '.', ''); } else { echo number_format($product['quantity'], 0, '.', ''); } ?>" />	  
 	<span class="plus">&gt;</span>
 	</div>
 	]]></add>
@@ -142,7 +142,7 @@
 	<add position="replace"><![CDATA[ 
 	<div class="quantity_div">
 	<span class="minus">&lt;</span>
-	<input type="text" name="quantity" class="quantity_input" size="2" value="<?php echo $minimum; ?>" data-maximum="<?php echo $quantity; ?>" id="input-quantity" class="form-control" />	  
+	<input type="text" name="quantity" class="quantity_input" size="2" value="<?php if ($minimum<1) { echo number_format($minimum, 1, '.', ''); } else { echo number_format($minimum, 0, '.', ''); } ?>" delta="<?php if ($minimum<1) { echo "0.1"; } else { echo "1"; } ?>" data-maximum="<?php if ($minimum<1) { echo number_format($quantity, 1, '.', ''); } else { echo number_format($quantity, 0, '.', ''); } ?>" id="input-quantity" class="form-control" />	  
 	<span class="plus">&gt;</span>
 	</div>
 	]]></add>
@@ -157,7 +157,8 @@
 	$('.quantity_input').each(function() {
 	var minimum = $(this).val();
 	var maximum = $(this).attr('data-maximum');
-	if(maximum <= 0) {
+	var delta = $(this).attr('delta');
+	if(((maximum)*1000) <= 0) {
 		$(this).val('0');
 		$(this).parent().parent().find('.button-group').children().first().attr('disabled', 'disabled');
 		if ($('.form-group').length !=0) {
@@ -165,20 +166,20 @@
 		}
 		var text = 'данный товар закончился.';
 	} else {
-		var text = 'данного товара осталось всего ' + maximum + ' шт!'
+		var text = 'данного товара осталось всего ' + (((maximum)*1000)/1000) + ' единицы!'
 	}
 	
 	$(this).next().click(function () {
-	if ((~~$(this).prev().val()+ ~~minimum) <= ~~maximum) {
-		$(this).prev().val(~~$(this).prev().val()+ ~~minimum);
+	if ((($(this).prev().val())*1000) <= (((maximum)*1000)-1)) {
+		$(this).prev().val(((($(this).prev().val())*1000 + delta*1000)/1000));
 	} else {
 	if ($(this).parent().find('.stock_warning').length ==0) { $(this).parent().append($('<span class="stock_warning">На нашем складе ' + text + '</span>').fadeIn()); }
 	$(this).parent().find('.stock_warning').fadeIn().delay('2000').fadeOut();
 	}
 	});
 	$(this).prev().click(function () {
-	if ($(this).next().val() > ~~minimum) {
-		$(this).next().val(~~$(this).next().val()- ~~minimum);
+	if ((($(this).next().val())*1000) > (minimum)*1000) {
+		$(this).next().val((($(this).next().val()*1000 - delta*1000)/1000));
 	}
 	});
 	});

@@ -166,7 +166,7 @@
 		}
 		var text = 'данный товар закончился.';
 	} else {
-		var text = 'данного товара осталось всего ' + (((maximum)*1000)/1000) + ' единицы!'
+		var text = 'данного товара осталось всего ' + (((maximum)*1000)/1000) + ' шт(кг)!'
 	}
 	
 	$(this).next().click(function () {
@@ -191,7 +191,7 @@
 	<style>
 	.quantity_div {display:block; width:80px; height:26px; position:relative; padding:0; text-align:center; margin: 10px auto; line-height:normal !important;}
 	.form-group .quantity_div {display:inline-block; vertical-align:middle;}
-	.quantity_input {text-align:center; width:28px; height:24px !important; margin:0 -3px !important; border:solid 1px #d2d2d2 !important; border-radius:0 !important; box-shadow:inset 1px 1px 1px #ddd; background:#fff !important; color:#555 !important; font-family:Arial;}
+	.quantity_input {text-align:center; width:36px; height:24px !important; margin:0 -3px !important; border:solid 1px #d2d2d2 !important; border-radius:0 !important; box-shadow:inset 1px 1px 1px #ddd; background:#fff !important; color:#555 !important; font-family:Arial;}
 	.plus, .minus {display:inline-block; vertical-align:top; height:24px !important; padding:3px 5px 3px !important; color:#888; border:solid 1px #d2d2d2; background:#eee; text-shadow:0 1px 0 #fff; box-shadow:inset 0 1px 0 #fff; font-size:14px; cursor:pointer; font-family:Arial;}
 	.minus{border-radius:3px 0 0 3px; border-right:none;}
 	.plus{border-radius:0 3px 3px 0; border-left:none;}

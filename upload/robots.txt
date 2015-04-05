@@ -46,6 +46,7 @@ Disallow: /*affiliate-forgot-password
 Disallow: /*create-affiliate-account
 Disallow: /*affiliate-login
 Disallow: /*affiliates
+Sitemap: http://www.izmagaza.ru/sitemap.xml
 
 
 User-agent: Yandex
@@ -95,4 +96,6 @@ Disallow: /*create-affiliate-account
 Disallow: /*affiliate-login
 Disallow: /*affiliates
 Clean-param: tracking
+Host: www.izmagaza.ru
+Sitemap: http://www.izmagaza.ru/sitemap.xml
 
